@@ -9,6 +9,7 @@ refreshRate = 500 #Main loop runs 500 times a second
 #Initialize Appearance
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("blue")
+omni.iconphoto(False, tkinter.PhotoImage(file=r"assets\logo.png"))
 
 #Main Loop
 def loop():
