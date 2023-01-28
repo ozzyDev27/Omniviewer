@@ -61,8 +61,6 @@ def loop():
     app.after(round(1000/refreshRate), loop) #?continuously run the loop
 
 # ------------------------ Initialize Widgets on Screen ------------------------ #
-#debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
-#debugButton.place(relx=0.1, rely=0.1, anchor=tkinter.CENTER)
 
 fileSelector=customtkinter.CTkButton(master=app, text="Select File", command=fileSelect)
 fileSelector.place(x=10, y=10, anchor=tkinter.NW)
