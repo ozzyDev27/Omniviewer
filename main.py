@@ -1,5 +1,6 @@
 import tkinter
 import customtkinter
+import os
 
 app=customtkinter.CTk()
 
@@ -23,9 +24,12 @@ def loop():
 def test():
     print(f"Width: {app.winfo_width()}\nHeight: {app.winfo_height()}")
 
+def getFileType(fileName):
+    return os.path.splitext(fileName)[1][1:]
+
 def fileSelect():
-    getFile=tkinter.filedialog.askopenfilename()
-    print(getFile)
+    openFile=tkinter.filedialog.askopenfilename()
+    print(getFileType(openFile))
 
 #Initialize Items on Screen
 debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
