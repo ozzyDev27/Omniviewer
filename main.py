@@ -1,6 +1,7 @@
 import tkinter
 import customtkinter
 import os
+from PIL import ImageTk, Image
 
 app=customtkinter.CTk()
 
@@ -37,7 +38,8 @@ def fileSelect():
     try:
         viewer.pack_forget() #?deletes the "viewer" widget from screen
     except:pass #?unless viewer hasnt been declared yet
-    
+
+#! TEXT FILE
     if fileType=="txt":
         viewer=tkinter.Text(app,bg=defaultBackgroundColor,fg=defaultForegroundColor,wrap=tkinter.WORD)
         viewer.insert(tkinter.INSERT,txt(openFile))
@@ -45,12 +47,17 @@ def fileSelect():
         viewer.config(state=tkinter.DISABLED)
         viewer.place(width=app.winfo_width()-sidebarPadding,height=app.winfo_height(),anchor=tkinter.E,relx=1,rely=0.5)
 
+#! CODING LANGUAGE FILE
     elif fileType in codingLanguageFileExtensions:
         viewer=tkinter.Text(app,bg=defaultBackgroundColor,fg=defaultForegroundColor,wrap=tkinter.NONE)
         viewer.insert(tkinter.INSERT,txt(openFile))
         viewer.pack(side=tkinter.RIGHT,expand=True,fill=tkinter.BOTH)
         viewer.config(state=tkinter.DISABLED)
         viewer.place(width=app.winfo_width()-sidebarPadding,height=app.winfo_height(),anchor=tkinter.E,relx=1,rely=0.5)
+
+#! RASTER IMAGE FILE
+    #elif fileType in ["png","HEIC","gif","jpg","jpeg"]:
+    #TODO: Make this work
 
 # --------------------------------- Main Loop -------------------------------- #
 def loop():
@@ -61,7 +68,6 @@ def loop():
     app.after(round(1000/refreshRate), loop) #?continuously run the loop
 
 # ------------------------ Initialize Widgets on Screen ------------------------ #
-
 fileSelector=customtkinter.CTkButton(master=app, text="Select File", command=fileSelect)
 fileSelector.place(x=10, y=10, anchor=tkinter.NW)
 
