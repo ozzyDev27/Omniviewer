@@ -2,8 +2,6 @@ import tkinter
 import customtkinter
 import os
 
-from text import *
-
 app=customtkinter.CTk()
 
 # --------------------------- Initialize Variables --------------------------- #
@@ -27,6 +25,10 @@ def test():
 def getFileType(fileName):
     return os.path.splitext(fileName)[1][1:]
 
+def txt(filePath):
+    with open(filePath, 'r') as file:
+        return file.read()
+
 def fileSelect():
     global viewer
     openFile=tkinter.filedialog.askopenfilename()
@@ -34,12 +36,15 @@ def fileSelect():
     try:
         viewer.pack_forget() #?deletes the "viewer" widget from screen
     except:pass #?unless viewer hasnt been declared yet
+    
     if getFileType(openFile)=="txt":
         viewer=tkinter.Text(app,bg=defaultBackgroundColor,fg=defaultForegroundColor,wrap=tkinter.WORD)
         viewer.insert(tkinter.INSERT,txt(openFile))
         viewer.pack(side=tkinter.RIGHT,expand=True,fill=tkinter.BOTH)
         viewer.config(state=tkinter.DISABLED)
         viewer.place(width=app.winfo_width()-sidebarPadding,height=app.winfo_height(),anchor=tkinter.E,relx=1,rely=0.5)
+
+    
 
 # --------------------------------- Main Loop -------------------------------- #
 def loop():
