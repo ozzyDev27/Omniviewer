@@ -1,12 +1,13 @@
 import tkinter
 import customtkinter
 import os
+import pathlib
 from PIL import ImageTk, Image
 
 app=customtkinter.CTk()
 
 # --------------------------- Initialize Variables --------------------------- #
-viewer=None #?will be replaced at later point in UX, just for now so that main loop doesnt bug
+viewer=None #?will be replaced at later point when project is running, just for now so that main loop doesnt bug
 refreshRate = 500 #?Main loop runs ~500 times a second
 sidebarPadding=163
 defaultBackgroundColor="#242424"
@@ -18,7 +19,8 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("blue")
 app.title("Omniviewer")
 app.geometry("750x450")
-app.iconbitmap(r"assets\logo.ico") #TODO: Make this work - icon does not show
+#// app.iconphoto(False,tkinter.PhotoImage(file=pathlib.PurePath("assets\logo.ico"))) 
+#TODO: Make this ^^^ work - icon does not show
 
 # --------------------------------- Functions -------------------------------- #
 def test():
@@ -28,7 +30,7 @@ def getFileType(fileName):
     return os.path.splitext(fileName)[1][1:]
 
 def txt(filePath):
-    with open(filePath, 'r') as file:
+    with open(pathlib.PurePath(filePath), 'r') as file:
         return file.read()
 
 def fileSelect():
@@ -56,7 +58,9 @@ def fileSelect():
         viewer.place(width=app.winfo_width()-sidebarPadding,height=app.winfo_height(),anchor=tkinter.E,relx=1,rely=0.5)
 
 #! RASTER IMAGE FILE
-    #elif fileType in ["png","HEIC","gif","jpg","jpeg"]:
+    elif fileType in ["png","HEIC","gif","jpg","jpeg"]:
+        viewer=tkinter.Frame(app,bg="#FFFFFF",width=app.winfo_width()-sidebarPadding,height=app.winfo_height())
+        viewer.place(anchor=tkinter.E,relx=1,rely=.5)
     #TODO: Make this work
 
 # --------------------------------- Main Loop -------------------------------- #
