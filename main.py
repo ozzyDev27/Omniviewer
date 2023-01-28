@@ -1,29 +1,31 @@
 import tkinter
 import customtkinter
 
-omni=customtkinter.CTk()
+app=customtkinter.CTk()
 
 #Initialize Variables
-refreshRate = 500 #Main loop runs 500 times a second
+refreshRate = 500 #Main loop runs ~500 times a second
 
-#Initialize Appearance
+#Initialize Window Settings
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("blue")
-omni.iconphoto(False, tkinter.PhotoImage(file=r"assets\logo.png"))
+app.title("Omniviewer")
+app.geometry("750x450")
 
 #Main Loop
 def loop():
-
-    omni.after(1000/refreshRate, loop)
+    
+    app.attributes("-topmost", True) #bring to front
+    app.after(round(1000/refreshRate), loop) #continuously run the loop
 
 #Functions
-def fileSelect():
-    print("button pressed lol")
+def test():
+    print(f"Width: {app.winfo_width()}\nHeight: {app.winfo_height()}")
 
 #Initialize Items on Screen
-fileSelector=customtkinter.CTkButton(master=omni, text="Select File", command=fileSelect)
+fileSelector=customtkinter.CTkButton(master=app, text="Debugger", command=test)
 fileSelector.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
 #Run the program
-omni.after(1, loop) #runs 1 millisecond after omni starts
-omni.mainloop()
+app.after(1, loop)
+app.mainloop()
