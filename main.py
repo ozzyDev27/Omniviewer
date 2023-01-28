@@ -32,13 +32,19 @@ def getFileType(fileName):
 def fileSelect():
     openFile=tkinter.filedialog.askopenfilename()
     print(getFileType(openFile))
-    try:viewer.pack_forget() #?deletes the "viewer" widget from screen
+    try:
+        viewer.pack_forget() #?deletes the "viewer" widget from screen
+        scrollBar.pack_forget() #?deletes the "scroll" widget from screen
     except:pass #?unless viewer hasnt been declared yet
     if getFileType(openFile)=="txt":
         print(txt(openFile))
         viewer=tkinter.Text(app)
         viewer.insert(tkinter.INSERT,txt(openFile))
-        viewer.pack()
+        viewer.pack(side=tkinter.LEFT,expand=True,fill=tkinter.BOTH)#TODO: fix expansion thingy, make it not go all to the left (only fill up a bit)
+        scrollBar=tkinter.Scrollbar(app)
+        scrollBar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
+        scrollBar.config(command=viewer.yview)
+        viewer.config(yscrollcommand=scrollBar.set,state=tkinter.DISABLED)
 
 # ------------------------ Initialize Widgets on Screen ------------------------ #
 debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
