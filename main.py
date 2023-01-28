@@ -9,7 +9,7 @@ app=customtkinter.CTk()
 # --------------------------- Initialize Variables --------------------------- #
 viewer=None #?will be replaced at later point in UX, just for now so that main loop doesnt bug
 refreshRate = 500 #?Main loop runs ~500 times a second
-sidebarPadding=150
+sidebarPadding=163
 defaultBackgroundColor="#242424"
 defaultForegroundColor="#ffffff"
 
@@ -54,7 +54,7 @@ def loop():
 #debugButton.place(relx=0.1, rely=0.1, anchor=tkinter.CENTER)
 
 fileSelector=customtkinter.CTkButton(master=app, text="Select File", command=fileSelect)
-fileSelector.place(relx=0, rely=0.025, anchor=tkinter.NW)
+fileSelector.place(x=10, y=10, anchor=tkinter.NW)
 
 # ------------------------------ Run the program ----------------------------- #
 app.after(1, loop)
