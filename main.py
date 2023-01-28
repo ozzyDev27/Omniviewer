@@ -9,7 +9,9 @@ app=customtkinter.CTk()
 # --------------------------- Initialize Variables --------------------------- #
 viewer=None #?will be replaced at later point in UX, just for now so that main loop doesnt bug
 refreshRate = 500 #?Main loop runs ~500 times a second
-sidebarPadding=100
+sidebarPadding=150
+defaultBackgroundColor="#242424"
+defaultForegroundColor="#ffffff"
 
 # ------------------------ Initialize Window Settings ------------------------ #
 customtkinter.set_appearance_mode("Dark")
@@ -33,9 +35,9 @@ def fileSelect():
         viewer.pack_forget() #?deletes the "viewer" widget from screen
     except:pass #?unless viewer hasnt been declared yet
     if getFileType(openFile)=="txt":
-        viewer=tkinter.Text(app)
+        viewer=tkinter.Text(app,bg=defaultBackgroundColor,fg=defaultForegroundColor,wrap=tkinter.WORD)
         viewer.insert(tkinter.INSERT,txt(openFile))
-        viewer.pack(side=tkinter.RIGHT,expand=True,fill=tkinter.BOTH) #TODO: make it so that the text goes to the right, not the left
+        viewer.pack(side=tkinter.RIGHT,expand=True,fill=tkinter.BOTH)
         viewer.config(state=tkinter.DISABLED)
         viewer.place(width=app.winfo_width()-sidebarPadding,height=app.winfo_height(),anchor=tkinter.E,relx=1,rely=0.5)
 
@@ -48,12 +50,11 @@ def loop():
     app.after(round(1000/refreshRate), loop) #?continuously run the loop
 
 # ------------------------ Initialize Widgets on Screen ------------------------ #
-debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
-debugButton.place(relx=0.1, rely=0.1, anchor=tkinter.CENTER)
+#debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
+#debugButton.place(relx=0.1, rely=0.1, anchor=tkinter.CENTER)
 
 fileSelector=customtkinter.CTkButton(master=app, text="Select File", command=fileSelect)
-fileSelector.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
-fileSelector.pack(side=tkinter.LEFT)
+fileSelector.place(relx=0, rely=0.025, anchor=tkinter.NW)
 
 # ------------------------------ Run the program ----------------------------- #
 app.after(1, loop)
