@@ -11,6 +11,7 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("blue")
 app.title("Omniviewer")
 app.geometry("750x450")
+app.iconbitmap(r"assets\logo.ico") #TODO: Make this work - icon does not show
 
 #Main Loop
 def loop():
@@ -23,8 +24,8 @@ def test():
     print(f"Width: {app.winfo_width()}\nHeight: {app.winfo_height()}")
 
 #Initialize Items on Screen
-fileSelector=customtkinter.CTkButton(master=app, text="Debugger", command=test)
-fileSelector.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
+debugButton.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
 #Run the program
 app.after(1, loop)
