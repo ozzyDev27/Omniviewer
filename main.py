@@ -16,16 +16,23 @@ app.iconbitmap(r"assets\logo.ico") #TODO: Make this work - icon does not show
 #Main Loop
 def loop():
     
-    app.attributes("-topmost", True) #bring to front
-    app.after(round(1000/refreshRate), loop) #continuously run the loop
+    app.lift() #?bring to front
+    app.after(round(1000/refreshRate), loop) #?continuously run the loop
 
 #Functions
 def test():
     print(f"Width: {app.winfo_width()}\nHeight: {app.winfo_height()}")
 
+def fileSelect():
+    getFile=tkinter.filedialog.askopenfilename()
+    print(getFile)
+
 #Initialize Items on Screen
 debugButton=customtkinter.CTkButton(master=app, text="Debugger", command=test)
-debugButton.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+debugButton.place(relx=0.1, rely=0.1, anchor=tkinter.CENTER)
+
+fileSelector=customtkinter.CTkButton(master=app, text="Select File", command=fileSelect)
+fileSelector.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
 #Run the program
 app.after(1, loop)
