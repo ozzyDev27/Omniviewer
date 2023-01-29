@@ -1,6 +1,6 @@
 import sys, os
 from PyQt5 import QtCore, QtGui, QtWidgets
-from new_gui import Ui_MainWindow
+from otherQTtest import Ui_MainWindow
 
 
 class Omniviewer(QtWidgets.QMainWindow):
