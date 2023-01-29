@@ -1,12 +1,13 @@
 import math
 import warnings
 import tkinter as tk
-
+import os
 from tkinter import ttk
 from PIL import Image, ImageTk
 
 #https://stackoverflow.com/users/7550928/foobar167
 #ty to u for "giving" us this code
+
 
 class AutoScrollbar(ttk.Scrollbar):
     """ A scrollbar that hides itself if it's not needed. Works only for grid geometry manager """
@@ -299,6 +300,6 @@ class MainWindow(ttk.Frame):
         canvas = CanvasImage(self.master, path)  # create widget
         canvas.grid(row=0, column=0)  # show widget
 
-filename = 'assets\logo.png'
+filename = r'assets\logo.ico'
 app = MainWindow(tk.Tk(), path=filename)
 app.mainloop()
